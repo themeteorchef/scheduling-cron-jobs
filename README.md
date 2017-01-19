@@ -1,17 +1,9 @@
-# The Meteor Chef - Base
-A starting point for Meteor apps.
+##### Tutorial: Scheduling Cron Jobs
 
-<table>
-  <tbody>
-    <tr>
-      <th>Base Version</th>
-      <td>v4.11.0</td>
-    </tr>
-    <tr>
-      <th>Meteor Version</th>
-      <td>v1.4.2.3</td>
-    </tr>
-  </tbody>
-</table>
+In this tutorial, we'll help a new startup, TaskWire, to create a proof-of-concept feature for sending task lists to uses once a day. To do it, we'll create a cron job that fires once every 24 hours, calling a module that compiles a user's task list and sends it to their email address.
 
-[Read the Documentation](http://themeteorchef.com/base)
+[Learn How to Schedule Cron Jobs](https://themeteorchef.com/tutorials/scheduling-cron-jobs)  
+
+[Download the Source](https://github.com/themeteorchef/scheduling-cron-jobs/archive/master.zip)
+
+The code for this tutorial is licensed under the [MIT License](http://opensource.org/licenses/MIT).
