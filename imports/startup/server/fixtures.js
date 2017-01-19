@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
-import { daysInFuture } from '../../modules/dates';
+import { isoTimestamp, hoursInFuture, daysInFuture } from '../../modules/dates';
 import { Tasks } from '../../api/tasks/tasks.js';
 
 if (!Meteor.isProduction) {
@@ -30,26 +30,26 @@ if (!Meteor.isProduction) {
     owner,
     title: 'Consider different shoelaces, unwaxed.',
     completed: false,
-    due: daysInFuture(1),
-    createdAt: (new Date()).toISOString(),
+    due: hoursInFuture(3),
+    createdAt: isoTimestamp(),
   }, {
     owner,
     title: 'Listen to "Almost Holy" soundtrack',
     completed: false,
     due: daysInFuture(2),
-    createdAt: (new Date()).toISOString(),
+    createdAt: isoTimestamp(),
   }, {
     owner,
     title: 'Read NYT article about Trump\'s cabinet',
     completed: false,
     due: daysInFuture(3),
-    createdAt: (new Date()).toISOString(),
+    createdAt: isoTimestamp(),
   }, {
     owner,
     title: 'Finish reading Seneca\'s Letters from a Stoic',
     completed: false,
     due: daysInFuture(4),
-    createdAt: (new Date()).toISOString(),
+    createdAt: isoTimestamp(),
   }];
 
   if (Tasks.find().count() === 0) tasks.forEach((task) => Tasks.insert(task));

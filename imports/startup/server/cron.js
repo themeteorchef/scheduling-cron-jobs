@@ -6,7 +6,7 @@ SyncedCron.config({ log: true, utc: true });
 SyncedCron.add({
   name: 'Send all user\'s their daily task lists',
   schedule(parser) {
-    return parser.text('every 30 seconds');
+    return parser.text('every 24 hours');
   },
   job() {
     sendDailyTasks()

@@ -3,14 +3,14 @@
 import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email';
 import { Tasks } from '../../api/tasks/tasks';
-import { endOfYesterday, endOfToday } from '../dates';
+import { isoTimestamp, endOfYesterday, endOfToday } from '../dates';
 import { templateToHTML } from './template-to-html';
 
 let module;
 
 const sendEmail = (data) => {
   try {
-    return Meteor.defer(() => {
+    Meteor.defer(() => {
       Email.send(Object.assign({}, data, {
         from: 'TaskWire <demo@themeteorchef.com>',
       }));
@@ -22,12 +22,19 @@ const sendEmail = (data) => {
 
 const sendTasksToUsers = (tasksByUser) => {
   try {
+    let usersContacted = 0;
     tasksByUser.forEach(({ firstName, tasks, emailAddress }) => {
-      sendEmail({
-        to: `${firstName} <${emailAddress}>`,
-        html: templateToHTML('daily-tasks-list', { firstName, tasks }),
-        subject: `[TaskWire] Here\'s your agenda for today, ${firstName}.`,
-      });
+
+      if (tasks.length > 0) {
+        sendEmail({
+          to: `${firstName} <${emailAddress}>`,
+          html: templateToHTML('daily-tasks-list', { firstName, tasks }),
+          subject: `[TaskWire] Here\'s your agenda for today, ${firstName}.`,
+        });
+      }
+
+      usersContacted += 1;
+      if (usersContacted === tasksByUser.length) module.resolve(`Tasks sent for ${isoTimestamp()}!`);
     });
   } catch (exception) {
     module.reject(`[sendTasksToUsers] ${exception}`);
