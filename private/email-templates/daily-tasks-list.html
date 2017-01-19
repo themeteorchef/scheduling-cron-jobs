@@ -1,0 +1,16 @@
+<div style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;">
+  <p style="margin-top:0px;">Hi, {{firstName}}!</p>
+  <p>Here's what you need to get done today:</p> <br/>
+  <table style="margin:0;padding:0;">
+    <tbody>
+      {{#each tasks}}
+        <tr>
+          <td width="15px"><div style="float:left;margin:0;width:15px;height:15px;border:2px solid #eee;"></div></td>
+          <td style="padding-left:10px;font-size:14px;line-height:21px;">{{title}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table> <br />
+  Cheers,<br />
+  The TaskWire Team
+</div>
